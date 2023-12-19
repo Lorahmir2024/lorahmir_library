@@ -16,6 +16,7 @@ const (
 	BadRequest
 	Conflict
 	FormatInvalid
+	DecodeError
 	Unauthorized
 	RequestEntityTooLarge
 	UnsupportedMediaType
@@ -44,6 +45,7 @@ func (s Status) String() string {
 		"BadRequest",
 		"Conflict",
 		"FormatInvalid",
+		"DecodeError",
 		"Unauthorized",
 		"RequestEntityTooLarge",
 		"UnsupportedMediaType",
