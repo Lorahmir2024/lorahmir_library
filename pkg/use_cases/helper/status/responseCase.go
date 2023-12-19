@@ -7,7 +7,7 @@ import (
 	"github.com/Lorahmir2024/lorahmir_library/pkg/domain/response"
 )
 
-func ResponseCaseEcho(c echo.Context, status response.Status, data interface{}) error {
+func ResponseCase(c echo.Context, status response.Status, data interface{}) error {
 
 	var respData interface{}
 
