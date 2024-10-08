@@ -1,14 +1,16 @@
 package response
 
-import (
-	"errors"
-)
-
 type Status int
 
+// LOS STATUS DEBEN MANTENER SU ORDEN. LOS NUEVOS DEBEN SER AGREGADOS AL FINAL
 const (
 	InternalServerError Status = iota
+	OK
 	Unknown
+	SearchFailed
+	CreateFailed
+	DeleteFailed
+	UpdateFailed
 	DBInitError
 	DBQueryError
 	DBExecutionError
@@ -23,57 +25,35 @@ const (
 	Unauthorized
 	RequestEntityTooLarge
 	UnsupportedMediaType
-	SearchSuccess
-	SearchFailed
-	CreateSuccess
-	CreateFailed
-	DeleteSuccess
-	DeleteFailed
-	UpdateSuccess
-	UpdateFailed
 )
 
-var statusNames = []string{
-	"InternalServerError",
-	"Unknown",
-	"DBInitError",
-	"DBQueryError",
-	"DBExecutionError",
-	"DBScanError",
-	"DBRowsError",
-	"DBRowsAffectedError",
-	"NoContent",
-	"BadRequest",
-	"Conflict",
-	"FormatInvalid",
-	"DecodeError",
-	"Unauthorized",
-	"RequestEntityTooLarge",
-	"UnsupportedMediaType",
-	"SearchSuccess",
-	"SearchFailed",
-	"CreateSuccess",
-	"CreateFailed",
-	"DeleteSuccess",
-	"DeleteFailed",
-	"UpdateSuccess",
-	"UpdateFailed",
-}
-
+// LOS STATUS DEBEN MANTENER SU ORDEN. LOS NUEVOS DEBEN SER AGREGADOS AL FINAL
 func (s Status) String() string {
-	if s < InternalServerError || s > UpdateFailed {
-		return "Invalid Status"
-	}
-	return statusNames[s]
+	return [...]string{
+		"InternalServerError",
+		"OK",
+		"Unknown",
+		"SearchFailed",
+		"CreateFailed",
+		"DeleteFailed",
+		"UpdateFailed",
+		"DBInitError",
+		"DBQueryError",
+		"DBExecutionError",
+		"DBScanError",
+		"DBRowsError",
+		"DBRowsAffectedError",
+		"NoContent",
+		"BadRequest",
+		"Conflict",
+		"FormatInvalid",
+		"DecodeError",
+		"Unauthorized",
+		"RequestEntityTooLarge",
+		"UnsupportedMediaType",
+	}[s]
 }
 
 func (s Status) Index() int {
 	return int(s)
-}
-
-func (s Status) Valid() error {
-	if s < InternalServerError || s > UpdateFailed {
-		return errors.New("invalid status")
-	}
-	return nil
 }

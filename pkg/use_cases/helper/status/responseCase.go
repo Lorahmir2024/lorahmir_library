@@ -1,11 +1,12 @@
 package status
 
 import (
+	"github.com/Lorahmir2024/lorahmir_library/pkg/domain/response"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
 
-func ResponseCase(c echo.Context, data interface{}, error string) error {
+func ResponseCase(c echo.Context, data interface{}, status response.Status) error {
 
 	var respData interface{}
 
@@ -16,8 +17,8 @@ func ResponseCase(c echo.Context, data interface{}, error string) error {
 	}
 
 	var errors []string
-	if error != "" {
-		errors = append(errors, error)
+	if status != response.OK {
+		errors = append(errors, status.String())
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
