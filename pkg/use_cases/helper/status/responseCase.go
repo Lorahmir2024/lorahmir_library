@@ -19,6 +19,8 @@ func ResponseCase(c echo.Context, data interface{}, status response.Status) erro
 	var errors []string
 	if status != response.OK {
 		errors = append(errors, status.String())
+	} else {
+		errors = []string{}
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
