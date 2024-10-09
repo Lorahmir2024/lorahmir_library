@@ -25,6 +25,7 @@ const (
 	Unauthorized
 	RequestEntityTooLarge
 	UnsupportedMediaType
+	UsernamesDoNotMatch
 )
 
 // LOS STATUS DEBEN MANTENER SU ORDEN. LOS NUEVOS DEBEN SER AGREGADOS AL FINAL
@@ -51,6 +52,7 @@ func (s Status) String() string {
 		"Unauthorized",
 		"RequestEntityTooLarge",
 		"UnsupportedMediaType",
+		"UsernamesDoNotMatch",
 	}[s]
 }
 
